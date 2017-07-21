@@ -1,20 +1,34 @@
 /* -------------------------------------
  * Fonts
  * ------------------------------------- */
-// Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-$base-font: "Open Sans", "Helvetica", "sans-serif";
-$header-font: "Raleway", "Helvetica", "sans-serif";
+@import url('https://fonts.googleapis.com/css?family=PT+Serif:400,700');
 
-// Local fonts (uncomment following lines)
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
+@font-face {
+  font-family:"Akzentica";
+  src: font-url('akzentica-master/akzentica_regular.eot');
+  src: font-url('akzentica-master/akzentica_regular.woff') format('woff'),
+       font-url('akzentica-master/akzentica_regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family:"Akzentica";
+  src: font-url('akzentica-master/akzentica_bold.eot');
+  src: font-url('akzentica-master/akzentica_bold.woff') format('woff'),
+       font-url('akzentica-master/akzentica_bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family:"Akzentica";
+  src: font-url('akzentica-master/akzentica_light.eot');
+  src: font-url('akzentica-master/akzentica_light.woff') format('woff'),
+       font-url('akzentica-master/akzentica_light.ttf') format('truetype');
+  font-weight: lighter;
+}
+
+$base-font: "Akzentica", "Open Sans", "Helvetica", "sans-serif";
+$header-font: 'PT Serif', serif, "Helvetica", "sans-serif";
 
 // Font-size and line-height
 $base-size: 16px;
@@ -24,6 +38,10 @@ $base-height: 1.4;
  * Colors
  * ------------------------------------- */
 // Scheme
+
+$light-gray: #DDDDDD;
+$dark-gray: #575757;
+
 $brand-color: #D23333;
 
 $red: #EE5F5B;

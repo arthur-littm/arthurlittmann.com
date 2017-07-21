@@ -1,2 +1,118 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-banner">
+  <div class="navbar">
+    <div class="logo">
+      <span id="letter">a</span>
+      <span id="word">LITTMANN</span>
+    </div>
+  </div>
+  <div class="home-banner-content">
+    <h1>I am a fullstack developer</h1>
+    <p>Be careful not to touch the balls!</p>
+  </div>
+  <canvas id="world"></canvas>
+</div>
+
+<div class="blue-banner banner">
+  <div class="container">
+    <div class="banner-title">
+      <h2>Hello</h2>
+    </div>
+    <div class="row">
+      <% @features.each do |feature| %>
+        <div class="col-xs-12 col-md-4">
+          <%= render "feature_card", title: feature[:title], description: feature[:description], icon: feature[:icon] %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= content_for(:after_js) do %>
+  <script>
+    $( document ).ready(function() {
+      var myCanvas = document.getElementById('world'),
+        Engine = Matter.Engine,
+        Render = Matter.Render,
+        Runner = Matter.Runner,
+        Composites = Matter.Composites,
+        MouseConstraint = Matter.MouseConstraint,
+        Mouse = Matter.Mouse,
+        World = Matter.World,
+        Bodies = Matter.Bodies;
+
+      var engine = Engine.create(),
+        world = engine.world;
+      var render = Render.create({
+        canvas: myCanvas,
+        engine: engine,
+        options: {
+          width: 700,
+          height: 500,
+          showAngleIndicator: false,
+          wireframes: false,
+          background: 'transparent',
+        }
+      });
+
+      Render.run(render);
+
+
+
+      // create runner
+      var runner = Runner.create();
+      Runner.run(runner, engine);
+
+      // add bodies
+      var stack = Composites.stack(50, 185, 10, 10, 20, 0, function(x, y) {
+          return Bodies.circle(x, y, 20);
+      });
+
+      World.add(world, [
+        // walls
+        Bodies.rectangle(400, 0, 800, 50, { isStatic: true }), // top
+        Bodies.rectangle(400, 600, 800, 50, { isStatic: true }), // bottom
+        Bodies.rectangle(800, 300, 50, 600, { isStatic: true }), // right
+        Bodies.rectangle(0, 300, 50, 600, { isStatic: true }), // left
+        stack
+      ]);
+
+      // add mouse control
+      var mouse = Mouse.create(render.canvas),
+        mouseConstraint = MouseConstraint.create(engine, {
+          mouse: mouse,
+          constraint: {
+            stiffness: 0.2,
+            render: {
+                visible: false
+            }
+          }
+        });
+
+      World.add(world, mouseConstraint);
+
+      // keep the mouse in sync with rendering
+      render.mouse = mouse;
+
+      // fit the render viewport to the scene
+      Render.lookAt(render, {
+          min: { x: 0, y: 0 },
+          max: { x: 800, y: 600 }
+      });
+
+      // context for MatterTools.Demo
+      return {
+          engine: engine,
+          runner: runner,
+          render: render,
+          canvas: render.canvas,
+          stop: function() {
+              Matter.Render.stop(render);
+              Matter.Runner.stop(runner);
+          }
+      };
+      mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
+      mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+
+    });
+  </script>
+<% end %>
