@@ -7,25 +7,81 @@
   </div>
   <div class="home-banner-content">
     <h1>I am a fullstack developer</h1>
-    <p>Be careful not to touch the balls!</p>
+    <p class="hidden-xs">Be careful not to touch the balls!</p>
   </div>
-  <canvas id="world"></canvas>
+  <canvas id="world" class="hidden-xs"></canvas>
 </div>
 
 <div class="blue-banner banner">
   <div class="container">
+    <!-- <div class="banner-title">
+      <h2>What I do</h2>
+    </div> -->
+    <div class="row">
+
+      <div class="col-xs-12 col-md-4">
+        <div class="feature-card">
+          <i class="fa fa-code"></i>
+          <h3>Web developer</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit officia est distinctio velit error qui nemo. Dicta sequi alias neque, provident natus quidem maiores nesciunt iure adipisci. Architecto, enim neque.</p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <div class="feature-card">
+          <i class="fa fa-graduation-cap"></i>
+          <h3>Teacher</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque sapiente molestiae minima? Voluptate facere odit quis incidunt aspernatur facilis, fuga exercitationem, reiciendis nam vero quod consequatur deleniti unde tempora sed?</p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <div class="feature-card">
+          <i class="fa fa-usd"></i>
+          <h3>Business developer</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis facilis illo quis, asperiores eum modi rem deserunt expedita deleniti corrupti ab vero magnam similique sunt, voluptatibus pariatur iusto labore tempore.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="container">
     <div class="banner-title">
-      <h2>Hello</h2>
+      <h2>About me</h2>
     </div>
     <div class="row">
-      <% @features.each do |feature| %>
+      <div class="col-xs-12 col-md-offset-2 col-md-8">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit officia est distinctio velit error qui nemo. Dicta sequi alias neque, provident natus quidem maiores nesciunt iure adipisci. Architecto, enim neque.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="blue-banner banner">
+    <div class="banner-title">
+      <h2>Where am I ?</h2>
+    </div>
+    <div class="map"></div>
+</div>
+
+<div class="banner">
+  <div class="container">
+    <div class="banner-title">
+      <h2>Latest videos</h2>
+    </div>
+    <div class="row">
+      <% @latest_videos_ids.each do |id| %>
         <div class="col-xs-12 col-md-4">
-          <%= render "feature_card", title: feature[:title], description: feature[:description], icon: feature[:icon] %>
+          <iframe width="100%" height="210" src="https://www.youtube.com/embed/<%= id %>" frameborder="0" allowfullscreen></iframe>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
 
 <%= content_for(:after_js) do %>
   <script>
