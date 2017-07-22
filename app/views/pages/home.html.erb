@@ -17,32 +17,33 @@
     <!-- <div class="banner-title">
       <h2>What I do</h2>
     </div> -->
+
     <div class="row">
+      <div class="col-xs-12 col-md-offset-1 col-md-10">
+        <div class="col-xs-12 col-md-4">
+          <div class="feature-card">
+            <i class="fa fa-code"></i>
+            <h3>Web developer</h3>
+            <p>I started as a freelancer doing various projects and I am now a full-time member of the team running <a href="https://www.lewagon.com" target="_blank">Le Wagon</a> coding bootcamp, helping  to develop their educational platform.</p>
+          </div>
+        </div>
 
-      <div class="col-xs-12 col-md-4">
-        <div class="feature-card">
-          <i class="fa fa-code"></i>
-          <h3>Web developer</h3>
-          <p>Full-time member of the team running Le Wagon in London, helping  to develop their educational platform.</p>
+        <div class="col-xs-12 col-md-4">
+          <div class="feature-card">
+            <i class="fa fa-graduation-cap"></i>
+            <h3>Teacher</h3>
+            <p>Teaching and running workshops at Le Wagon coding bootcamp in various cities, on subjects like Ruby, OOP, Database, Frontend &amp; Rails. Read <a href="https://www.lewagon.com/stories/arthur-littmann-web-developer-teacher">my story</a> on how I went from student to teacher!</p>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+          <div class="feature-card">
+            <i class="fa fa-line-chart"></i>
+            <h3>Business developer</h3>
+            <p>Graduated from ESSEC Business School, in France, with a Bachelor in Business Administration degree focused on entrepreneurship.</p>
+          </div>
         </div>
       </div>
-
-      <div class="col-xs-12 col-md-4">
-        <div class="feature-card">
-          <i class="fa fa-graduation-cap"></i>
-          <h3>Teacher</h3>
-          <p>Teaching and running workshops at Le Wagon coding bootcamp in various cities, on subjects like Ruby, OOP, Database, Frontend &amp; Rails.</p>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-md-4">
-        <div class="feature-card">
-          <i class="fa fa-line-chart"></i>
-          <h3>Business developer</h3>
-          <p>Graduated from ESSEC Business School with a Bachelor in Business Administration degree focused on entrepreneurship.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
@@ -53,8 +54,10 @@
       <h2>About me</h2>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-offset-2 col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit officia est distinctio velit error qui nemo. Dicta sequi alias neque, provident natus quidem maiores nesciunt iure adipisci. Architecto, enim neque.</p>
+      <div class="col-xs-12 col-md-offset-1 col-md-10">
+        <div class="banner-content-big">
+          <p>I was born in France but I moved to Italy where I lived for 15 years, after that I studied business and decided to learn how to code to enter the tech industry.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -73,11 +76,13 @@
       <h2>Latest videos</h2>
     </div>
     <div class="row">
-      <% @latest_videos_ids.each do |id| %>
-        <div class="col-xs-12 col-md-4">
-          <iframe width="100%" height="210" src="https://www.youtube.com/embed/<%= id %>" frameborder="0" allowfullscreen></iframe>
-        </div>
-      <% end %>
+      <div class="col-xs-12 col-md-offset-1 col-md-10">
+        <% @latest_videos_ids.each do |id| %>
+          <div class="col-xs-12 col-md-4">
+            <iframe width="100%" height="180" src="https://www.youtube.com/embed/<%= id %>" frameborder="0" allowfullscreen></iframe>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
