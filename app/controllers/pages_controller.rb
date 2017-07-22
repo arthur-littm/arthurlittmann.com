@@ -13,25 +13,10 @@ class PagesController < ApplicationController
 
     @hash = [
       {
-        "lat": 43.3027392,
-        "lng": 5.3765816,
-        "infowindow": "<h1>Aix - Marseille</h1><p><img src='https://d1gofzrmx0fcbg.cloudfront.net/production/cities/city_pictures/000/000/008/thumbnail/marseille.jpg?1445520529' height='200'></p>"
+        "lat": 51.5074,
+        "lng": 0.1278,
+        "infowindow": "<h1>London</h1><p><img src='https://d1gofzrmx0fcbg.cloudfront.net/production/cities/city_pictures/000/000/008/thumbnail/marseille.jpg?1445520529' height='200'></p>"
       },
-      {
-        "lat": 43.3027392,
-        "lng": 5.3765816,
-        "infowindow": "<h1>Aix - Marseille</h1><p><img src='https://d1gofzrmx0fcbg.cloudfront.net/production/cities/city_pictures/000/000/008/thumbnail/marseille.jpg?1445520529' height='200'></p>"
-      },
-      {
-        "lat": 43.3027392,
-        "lng": 5.3765816,
-        "infowindow": "<h1>Aix - Marseille</h1><p><img src='https://d1gofzrmx0fcbg.cloudfront.net/production/cities/city_pictures/000/000/008/thumbnail/marseille.jpg?1445520529' height='200'></p>"
-      },
-      {
-        "lat": 43.3027392,
-        "lng": 5.3765816,
-        "infowindow": "<h1>Aix - Marseille</h1><p><img src='https://d1gofzrmx0fcbg.cloudfront.net/production/cities/city_pictures/000/000/008/thumbnail/marseille.jpg?1445520529' height='200'></p>"
-      }
     ]
   end
 end
