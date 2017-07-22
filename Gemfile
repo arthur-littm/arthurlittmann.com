@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.4'
 
+gem "geocoder"
 gem "coffee-rails"
 gem "gmaps4rails"
 
