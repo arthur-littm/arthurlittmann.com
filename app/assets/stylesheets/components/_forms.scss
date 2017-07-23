@@ -1,0 +1,15 @@
+.input-form-transparent {
+  background-color: transparent;
+  color: white;
+  border: 0;
+  border-bottom: 2px solid #243b55;
+  outline: none;
+  resize: none;
+  box-shadow: none;
+  &:focus {
+    border-color: transparent;
+    box-shadow: none;
+    border: 0;
+    border-bottom: 3px solid #243b55;
+  }
+}

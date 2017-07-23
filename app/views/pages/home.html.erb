@@ -27,7 +27,7 @@
         <div class="feature-card">
           <i class="fa fa-graduation-cap fa-fw"></i>
           <h3>Teacher</h3>
-          <p>Teaching and running workshops at Le Wagon coding bootcamp in various cities, on subjects like Ruby, OOP, Database, Frontend &amp; Rails. Read <a href="https://www.lewagon.com/stories/arthur-littmann-web-developer-teacher">my story</a> on how I went from student to teacher!</p>
+          <p>Teaching and running workshops at Le Wagon coding bootcamp in various cities, on subjects like Ruby, OOP, Database, Frontend &amp; Rails. Read <a href="https://www.lewagon.com/stories/arthur-littmann-web-developer-teacher" target="_blank">my story</a> on how I went from student to teacher!</p>
         </div>
       </div>
 
@@ -49,8 +49,12 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-offset-1 col-md-10">
-        <div class="banner-content-big">
-          <p>I was born in France but I moved to Italy where I lived for 15 years, after that I studied business and decided to learn how to code to enter the tech industry.</p>
+        <div class="banner-content-big text-justify">
+          <p>I was born in France but I moved to Italy where I lived for 15 years, after that I studied business and decided to learn how to code to enter the tech industry. After I finished Le Wagon's coding bootcamp I started freelancing on various projects including <a href="http://cap-vauban.com/" target="_blank">holiday rental platform</a> and a <a href="http://like-minded.tech/" target="_blank">"TripAdvisor" for friends</a>.</p>
+
+          <p>After that I started as a Teaching Assistant on the following batches in Le Wagon London, and I am now a full-time member of the team running Le Wagon, as a teacher and developer.</p>
+
+          <p>During my free time I like to make record and edit <a href="https://www.youtube.com/channel/UCC6p0L9affF4y4iIxB5jWoQ" target="_blank">videos</a> of my travels or my hobbies like snowboarding, scubadiving, cycling.</p>
         </div>
       </div>
     </div>
@@ -111,10 +115,24 @@
 </div>
 
 <div class="blue-banner banner">
-  <div class="banner-title">
-    <h2>Want to get in touch ?</h2>
+  <div class="container">
+    <div class="banner-title">
+      <h2>Want to get in touch ?</h2>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <form method="POST" action="http://formspree.io/arthur.littmann@gmail.com">
+            <input type="email" name="email" placeholder="Your email" class="form-control input-form-transparent">
+            <input type="subject" name="subject" placeholder="Subject" class="form-control input-form-transparent">
+            <textarea name="message" placeholder="Your message" class="form-control input-form-transparent"></textarea>
+            <button type="submit" class="button button-white">SEND <i class="fa fa-paper-plane fa-fw"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div></div>
 </div>
 
 <div class="banner">
@@ -125,7 +143,7 @@
     <div class="row">
       <% @latest_videos_ids.each do |id| %>
         <div class="col-xs-12 col-md-4">
-          <iframe width="100%" height="180" src="https://www.youtube.com/embed/<%= id %>" frameborder="0" allowfullscreen></iframe>
+          <iframe class="yt-video" width="100%" height="180" src="https://www.youtube.com/embed/<%= id %>?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
         </div>
       <% end %>
     </div>
@@ -136,417 +154,14 @@
 <%= content_for(:after_js) do %>
   <script>
     $( document ).ready(function() {
-    // MATTER.JS
-      var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-      var myCanvas = document.getElementById('world'),
-        Engine = Matter.Engine,
-        Render = Matter.Render,
-        Runner = Matter.Runner,
-        Composites = Matter.Composites,
-        Common = Matter.Common,
-        MouseConstraint = Matter.MouseConstraint,
-        Mouse = Matter.Mouse,
-        World = Matter.World,
-        Bodies = Matter.Bodies;
-
-      var engine = Engine.create(),
-        world = engine.world;
-      var render = Render.create({
-        canvas: myCanvas,
-        engine: engine,
-        options: {
-          width: screenWidth,
-          height: 600,
-          showAngleIndicator: false,
-          wireframes: false,
-          background: 'transparent',
-        }
-      });
-
-      Render.run(render);
-
-
-
-      // create runner
-      var runner = Runner.create();
-      Runner.run(runner, engine);
-
-      // add bodies
-      var stack = Composites.stack(50, 185, 14, 10, 10, 0, function(x, y) {
-          return Bodies.circle(x, y, 20);
-      });
-
-      World.add(world, [
-        // walls
-        // Bodies.rectangle(400, 0, 800, 10, { isStatic: true }), // top
-        Bodies.rectangle(400, 600, 800, 5, { isStatic: true, render: {
-           fillStyle: 'transparent',
-           lineWidth: 0
-          }
-        }), // bottom
-        // Bodies.rectangle(800, 300, 50, 0, { isStatic: true }), // right
-        // Bodies.rectangle(0, 300, 50, 600, { isStatic: true }), // left
-        stack
-      ]);
-
-      // add mouse control
-      var mouse = Mouse.create(render.canvas),
-        mouseConstraint = MouseConstraint.create(engine, {
-          mouse: mouse,
-          constraint: {
-            stiffness: 0.2,
-            render: {
-                visible: false
-            }
-          }
-        });
-        mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
-        mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
-
-
-      World.add(world, mouseConstraint);
-
-      // keep the mouse in sync with rendering
-      render.mouse = mouse;
-
-      // fit the render viewport to the scene
-      Render.lookAt(render, {
-          min: { x: 0, y: 0 },
-          max: { x: 800, y: 600 }
-      });
-
-      // context for MatterTools.Demo
-      return {
-          engine: engine,
-          runner: runner,
-          render: render,
-          canvas: render.canvas,
-          stop: function() {
-              Matter.Render.stop(render);
-              Matter.Runner.stop(runner);
-          }
-      };
-
-      // GOOGLE MAPS
-      var handler = Gmaps.build('Google', { markers: { clusterer: undefined }});
-        handler.buildMap({ internal: { id: 'map' } }, function(){
-          markers = handler.addMarkers([
-            {
-              "lat": 43.3027392,
-              "lng": 5.3765816,
-              "infowindow": "<h1>Aix - Marseille</h1><p><img src='https://d1gofzrmx0fcbg.cloudfront.net/production/cities/city_pictures/000/000/008/thumbnail/marseille.jpg?1445520529' height='200'></p>"
-            },
-            {
-              "lat": -23.5591728,
-              "lng": -46.6801402,
-              "infowindow": "<h1>São Paulo</h1><p><img src='https://d1gofzrmx0fcbg.cloudfront.net/production/cities/city_pictures/000/000/015/thumbnail/12280389883_aecfecfc0e_h.jpg?1458582747' height='200'></p>"
-            }
-          ]);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-        });
-    });
-  </script>
-<% end %>
-
-<% content_for(:after_js) do %>
-  <script>
-    $(document).ready(function() {
-      var styles = [{
-    "featureType": "all",
-    "elementType": "labels.text.fill",
-    "stylers": [
-            {
-              "visibility": "off",
-              "saturation": 36
-            },
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 40
-            }
-          ]
-        },
-        {
-          "featureType": "all",
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "visibility": "off",
-              "visibility": "on"
-            },
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 16
-            }
-          ]
-        },
-        {
-          "featureType": "all",
-          "elementType": "labels.icon",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative",
-          "elementType": "geometry.fill",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 20
-            }
-          ]
-        },
-        {
-          "featureType": "administrative",
-          "elementType": "geometry.stroke",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 17
-            },
-            {
-              "weight": 1.2
-            }
-          ]
-        },
-        {
-          "featureType": "administrative",
-          "elementType": "labels",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.country",
-          "elementType": "all",
-          "stylers": [
-            {
-              "visibility": "simplified"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.country",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "visibility": "simplified"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.country",
-          "elementType": "labels.text",
-          "stylers": [
-            {
-              "visibility": "off",
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.province",
-          "elementType": "all",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.locality",
-          "elementType": "all",
-          "stylers": [
-            {
-              "visibility": "simplified"
-            },
-            {
-              "saturation": "-100"
-            },
-            {
-              "lightness": "30"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.neighborhood",
-          "elementType": "all",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.land_parcel",
-          "elementType": "all",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "landscape",
-          "elementType": "all",
-          "stylers": [
-            {
-              "visibility": "simplified"
-            },
-            {
-              "gamma": "0.00"
-            },
-            {
-              "lightness": "74"
-            }
-          ]
-        },
-        {
-          "featureType": "landscape",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#243b55"
-            },
-            {
-              "lightness": 10
-            }
-          ]
-        },
-        {
-          "featureType": "landscape.man_made",
-          "elementType": "all",
-          "stylers": [
-            {
-              "lightness": "3"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "all",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 21
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "visibility": "simplified"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry.fill",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 17
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry.stroke",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 29
-            },
-            {
-              "weight": 0.2
-            }
-          ]
-        },
-        {
-          "featureType": "road.arterial",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 18
-            }
-          ]
-        },
-        {
-          "featureType": "road.local",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 16
-            }
-          ]
-        },
-        {
-          "featureType": "transit",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#000000"
-            },
-            {
-              "lightness": 19
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#141e30"
-            },
-            {
-              "lightness": 0
-            }
-          ]
-        }
-        ];
+      launchMatterJs()
       var handler = Gmaps.build('Google');
-        handler.buildMap({ internal: { id: 'map' }, provider: { scrollwheel: false, zoomControl: false, styles: styles } }, function(){
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(2);
-      });
+        handler.buildMap({ internal: { id: 'map' }, provider: { scrollwheel: false, zoomControl: false, styles: getStyle() } }, function(){
+            markers = handler.addMarkers(<%= raw @hash.to_json %>);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            handler.getMap().setZoom(2);
+          });
     });
   </script>
 <% end %>

@@ -1,6 +1,9 @@
 .recommendation-card {
   margin-bottom: 30px;
   position: relative;
+  p {
+    text-align: justify;
+  }
   span {
     font-weight: bold;
     font-size: 14px;

@@ -11,8 +11,8 @@ class PagesController < ApplicationController
   def create_map_positions
     @hash = [
       {
-        "lat": 51.5074,
-        "lng": 0.1278,
+        "lat": 51.5188,
+        "lng": 0.0667,
         "icon": 'images/marker1.png',
         "infowindow": "<h4 class='map-info'>London</h4>"
       },
