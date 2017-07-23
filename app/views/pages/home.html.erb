@@ -6,8 +6,8 @@
     </div>
   </div>
   <div class="home-banner-content">
-    <h1>I am a fullstack developer</h1>
-    <p class="hidden-xs">Don't touch the balls!</p>
+    <h1>I am a <span id="typed-target">fullstack developer</span></h1>
+    <p class="hidden-xs">Don't make the balls fall, it was a pain to stack them!</p>
   </div>
   <canvas id="world" class="hidden-xs"></canvas>
 </div>
@@ -154,7 +154,15 @@
 <%= content_for(:after_js) do %>
   <script>
     $( document ).ready(function() {
+      $("#typed-target").typed({
+        strings: ["designer", "video editor", "traveler", "frontend dev", "backend dev", "snowboarder", "business developer", "scubadiver", "fullstack developer"],
+        typeSpeed: 200,
+        startDelay: 1000,
+      });
       launchMatterJs()
+
+
+
       var handler = Gmaps.build('Google');
         handler.buildMap({ internal: { id: 'map' }, provider: { scrollwheel: false, zoomControl: false, styles: getStyle() } }, function(){
             markers = handler.addMarkers(<%= raw @hash.to_json %>);
