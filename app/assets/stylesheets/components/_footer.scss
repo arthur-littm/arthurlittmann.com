@@ -1,6 +1,6 @@
 .footer {
   background-color: #141e30;
-  color: #E5E5E5;
+  color: white;
   padding: 30px 0 20px 0;
 }
 
@@ -15,10 +15,14 @@
     font-size: 22px;
   }
   a {
-    color: #E5E5E5;
+    color: white;
+    opacity: .5;
     &:hover {
-      color: #CDCDCD;
+      opacity: .7;
       text-decoration: none;
     }
+  }
+  span {
+    opacity: .5;
   }
 }
