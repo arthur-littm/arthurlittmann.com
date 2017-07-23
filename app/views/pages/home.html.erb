@@ -48,7 +48,7 @@
       <h2>About me</h2>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-offset-1 col-md-10">
+      <div class="col-xs-offset-1 col-xs-10">
         <div class="banner-content-big text-justify">
           <p>I was born in France but I moved to Italy where I lived for 15 years, after that I studied business and decided to learn how to code to enter the tech industry. After I finished Le Wagon's coding bootcamp I started freelancing on various projects including <a href="http://cap-vauban.com/" target="_blank">holiday rental platform</a> and a <a href="http://like-minded.tech/" target="_blank">"TripAdvisor" for friends</a>.</p>
 
@@ -154,19 +154,20 @@
 <%= content_for(:after_js) do %>
   <script>
     $( document ).ready(function() {
+      // TYPED.JS
       $("#typed-target").typed({
         strings: ["designer", "video editor", "traveler", "frontend dev", "backend dev", "snowboarder", "business developer", "scubadiver", "fullstack developer"],
-        typeSpeed: 200,
+        typeSpeed: 100,
         startDelay: 800,
         backDelay: 2000,
-        shuffle: true,
-        showCursor: true,
-        loop: true,
+        // shuffle: true,
+        // loop: true,
       });
+
+      // MATTER.JS
       launchMatterJs()
 
-
-
+      // MAP
       var handler = Gmaps.build('Google');
         handler.buildMap({ internal: { id: 'map' }, provider: { scrollwheel: false, zoomControl: false, styles: getStyle() } }, function(){
             markers = handler.addMarkers(<%= raw @hash.to_json %>);

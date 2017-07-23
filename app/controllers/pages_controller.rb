@@ -13,8 +13,7 @@ class PagesController < ApplicationController
       {
         "lat": 51.5188,
         "lng": 0.0667,
-        "icon": 'images/marker1.png',
-        "infowindow": "<h4 class='map-info'>London</h4>"
+        "icon": "",
       },
     ]
   end
