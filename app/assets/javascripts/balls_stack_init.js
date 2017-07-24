@@ -36,7 +36,7 @@ function launchMatterJs() {
   Runner.run(runner, engine);
 
   // add bodies
-  var stack = Composites.stack(50, 185, 14, 10, 10, 0, function(x, y) {
+  var stack = Composites.stack(145, 250, 10, 8, 10, 0, function(x, y) {
       return Bodies.circle(x, y, 20);
   });
 
