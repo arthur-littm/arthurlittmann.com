@@ -1,3 +1,13 @@
-  .yt-video {
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.yt-video {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slick-slide {
+  padding: 0 10px;
+}
+
+.slick-prev:before, .slick-next:before {
+  color:  #1A4596 !important;
+  opacity: .8;
+}
+

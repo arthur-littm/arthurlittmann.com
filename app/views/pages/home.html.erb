@@ -140,9 +140,9 @@
     <div class="banner-title">
       <h2>What am I doing ?</h2>
     </div>
-    <div class="row">
+    <div class="row videos-slick">
       <% @latest_videos_ids.each do |id| %>
-        <div class="col-xs-12 col-md-4">
+        <div class="">
           <iframe class="yt-video" width="100%" height="180" src="https://www.youtube.com/embed/<%= id %>?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
         </div>
       <% end %>
@@ -175,6 +175,23 @@
             handler.fitMapToBounds();
             handler.getMap().setZoom(2);
           });
+
+      // SLICK
+      // $('.videos-slick').slick({
+      //   slidesToShow: 3,
+      //   slidesToScroll: 1,
+      //   autoplay: true,
+      //   autoplaySpeed: 2000,
+      // });
+      $('.videos-slick').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows: true,
+        // autoplay: true,
+        // autoplaySpeed: 4000,
+        // dots: true
+      });
     });
   </script>
 <% end %>
