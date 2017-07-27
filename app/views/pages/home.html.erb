@@ -160,37 +160,26 @@
         typeSpeed: 100,
         startDelay: 800,
         backDelay: 2000,
-        // shuffle: true,
-        // loop: true,
       });
 
       // MATTER.JS
-      launchMatterJs()
+      launchCandles()
 
       // MAP
       var handler = Gmaps.build('Google');
-        handler.buildMap({ internal: { id: 'map' }, provider: { scrollwheel: false, zoomControl: false, styles: getStyle() } }, function(){
-            markers = handler.addMarkers(<%= raw @hash.to_json %>);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-            handler.getMap().setZoom(2);
-          });
+      handler.buildMap({ internal: { id: 'map' }, provider: { scrollwheel: false, zoomControl: false, styles: getStyle() } }, function(){
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          handler.getMap().setZoom(2);
+        });
 
       // SLICK
-      // $('.videos-slick').slick({
-      //   slidesToShow: 3,
-      //   slidesToScroll: 1,
-      //   autoplay: true,
-      //   autoplaySpeed: 2000,
-      // });
       $('.videos-slick').slick({
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 3,
         arrows: true,
-        // autoplay: true,
-        // autoplaySpeed: 4000,
-        // dots: true
       });
     });
   </script>

@@ -1,57 +1,43 @@
 // MATTER.JS
-function launchMatterJs() {
+function launchCandles() {
 
   var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   var myCanvas = document.getElementById('world'),
     Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
+    Body = Matter.Body,
     Composites = Matter.Composites,
-    Common = Matter.Common,
     MouseConstraint = Matter.MouseConstraint,
     Mouse = Matter.Mouse,
-    World = Matter.World,
-    Bodies = Matter.Bodies;
+    World = Matter.World;
 
   var engine = Engine.create(),
     world = engine.world;
+
   var render = Render.create({
     canvas: myCanvas,
     engine: engine,
     options: {
-      width: screenWidth,
-      height: 600,
-      showAngleIndicator: false,
-      wireframes: false,
-      background: 'transparent',
+        width: screenWidth,
+        height: 600,
+        background: 'transparent',
+        showVelocity: true,
+        wireframes: false,
     }
   });
 
+
   Render.run(render);
-
-
 
   // create runner
   var runner = Runner.create();
   Runner.run(runner, engine);
 
-  // add bodies
-  var stack = Composites.stack(145, 250, 10, 8, 10, 0, function(x, y) {
-      return Bodies.circle(x, y, 20);
-  });
+  var cradle = Composites.newtonsCradle(230, 300, 7, 30, 200);
+    World.add(world, cradle);
+    Body.translate(cradle.bodies[0], { x: -180, y: -100 });
 
-  World.add(world, [
-    // walls
-    // Bodies.rectangle(400, 0, 800, 10, { isStatic: true }), // top
-    Bodies.rectangle(400, 600, 800, 5, { isStatic: true, render: {
-       fillStyle: 'transparent',
-       lineWidth: 0
-      }
-    }), // bottom
-    // Bodies.rectangle(800, 300, 50, 0, { isStatic: true }), // right
-    // Bodies.rectangle(0, 300, 50, 600, { isStatic: true }), // left
-    stack
-  ]);
 
   // add mouse control
   var mouse = Mouse.create(render.canvas),
@@ -75,19 +61,20 @@ function launchMatterJs() {
 
   // fit the render viewport to the scene
   Render.lookAt(render, {
-      min: { x: 0, y: 0 },
-      max: { x: 800, y: 600 }
+    min: { x: 0, y: 50 },
+    max: { x: 800, y: 600 }
   });
 
   // context for MatterTools.Demo
   return {
-      engine: engine,
-      runner: runner,
-      render: render,
-      canvas: render.canvas,
-      stop: function() {
-          Matter.Render.stop(render);
-          Matter.Runner.stop(runner);
-      }
+    engine: engine,
+    runner: runner,
+    render: render,
+    canvas: render.canvas,
+    stop: function() {
+      Matter.Render.stop(render);
+      Matter.Runner.stop(runner);
+    }
   };
+
 }

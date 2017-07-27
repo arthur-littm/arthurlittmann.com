@@ -28,6 +28,7 @@
     width: 55px;
     height: 55px;
     padding: 5px 5px 15px 5px;
+    z-index: 2;
   }
   #word {
     bottom: 0;
@@ -37,7 +38,7 @@
     line-height: 33px;
     color: $dark-gray;
     border: 1px solid $dark-gray;
-    z-index: -1;
+    z-index: 1;
     padding: 10px 20px;
   }
 }
