@@ -19,12 +19,18 @@ class PagesController < ApplicationController
   end
 
   def get_youtube_ids
-    youtube = open("https://www.youtube.com/channel/UCC6p0L9affF4y4iIxB5jWoQ")
-    youtube_doc = Nokogiri::HTML(youtube)
-    links = youtube_doc.css('div.compact-shelf-content-container .yt-uix-sessionlink').map { |link| link['href'] }
     @latest_videos_ids = []
-    links.uniq.first(9).each do |link|
-      @latest_videos_ids << link.split("=")[-1]
+    begin
+      youtube = open("https://www.youtube.com/channel/UCC6p0L9affF4y4iIxB5jWoQ")
+      youtube_doc = Nokogiri::HTML(youtube)
+      links = youtube_doc.css('div.compact-shelf-content-container .yt-uix-sessionlink').map { |link| link['href'] }
+
+      links.uniq.first(9).each do |link|
+        @latest_videos_ids << link.split("=")[-1]
+      end
+    rescue Exception => e
+      @latest_videos_ids << "failed"
     end
+
   end
 end
