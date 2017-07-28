@@ -2,6 +2,7 @@
 function launchSlingshot() {
 
   var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  var screenHeight = (window.innerHeight > 0) ? window.innerHeight : screen.height;
   var myCanvas = document.getElementById('world'),
     Engine = Matter.Engine,
     Render = Matter.Render,
@@ -25,7 +26,7 @@ function launchSlingshot() {
         width: screenWidth,
         height: 600,
         background: 'transparent',
-        showVelocity: true,
+        showVelocity: false,
         wireframes: false,
     }
   });
@@ -38,28 +39,25 @@ function launchSlingshot() {
   Runner.run(runner, engine);
 
   // add bodies
-  // var cradle = Composites.newtonsCradle(230, 300, 7, 30, 200);
-  //   World.add(world, cradle);
-  //   Body.translate(cradle.bodies[0], { x: -180, y: -100 });
-  var ground = Bodies.rectangle(395, 600, 815, 50, { isStatic: true }),
+  var ground = Bodies.rectangle(395, 550, 815, 10, { isStatic: true }),
     rockOptions = { density: 0.004 },
-    rock = Bodies.polygon(170, 450, 8, 20, rockOptions),
-    anchor = { x: 170, y: 450 },
+    rock = Bodies.polygon(50, 450, 8, 20, rockOptions),
+    anchor = { x: 50, y: 450 },
     elastic = Constraint.create({
       pointA: anchor,
       bodyB: rock,
       stiffness: 0.05
     });
 
-    var pyramid = Composites.pyramid(500, 300, 9, 10, 0, 0, function(x, y) {
+    var pyramid = Composites.pyramid(500, 300, 11, 10, 2, 0, function(x, y) {
         return Bodies.rectangle(x, y, 25, 40);
       });
 
     World.add(engine.world, [ground, pyramid, rock, elastic]);
 
     Events.on(engine, 'afterUpdate', function() {
-      if (mouseConstraint.mouse.button === -1 && (rock.position.x > 190 || rock.position.y < 430)) {
-        rock = Bodies.polygon(170, 450, 7, 20, rockOptions);
+      if (mouseConstraint.mouse.button === -1 && (rock.position.x > 70 || rock.position.y < 430)) {
+        rock = Bodies.polygon(50, 450, 7, 20, rockOptions);
         World.add(engine.world, rock);
         elastic.bodyB = rock;
       }
