@@ -7,7 +7,7 @@
   </div>
   <div class="home-banner-content">
     <h1>I am a <span id="typed-target">fullstack developer</span></h1>
-    <p class="hidden-xs">Don't make the balls fall, it was a pain to stack them!</p>
+    <p class="hidden-xs">Give it your best shot!</p>
   </div>
   <canvas id="world" class="hidden-xs"></canvas>
 </div>
@@ -160,10 +160,12 @@
         typeSpeed: 100,
         startDelay: 800,
         backDelay: 2000,
+        loop: true
       });
 
       // MATTER.JS
-      launchCandles()
+      // launchNewtonsCradle()
+      launchSlingshot()
 
       // MAP
       var handler = Gmaps.build('Google');
